@@ -1,0 +1,174 @@
+/* ===== RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  background-color: #f4f6f9;
+  color: #1a1a2e;
+  line-height: 1.6;
+}
+
+a {
+  color: #4e6af0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===== SKIP LINK ===== */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #4e6af0;
+  color: white;
+  padding: 10px 20px;
+  z-index: 999;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ===== HEADER ===== */
+header {
+  background-color: #1a1a2e;
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* ===== NAVIGATION ===== */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+nav ul li a {
+  color: white;
+  font-size: 0.95rem;
+}
+
+nav ul li a:hover {
+  color: #a0aff8;
+  text-decoration: none;
+}
+
+nav ul li a.active {
+  color: #a0aff8;
+  border-bottom: 2px solid #a0aff8;
+  padding-bottom: 2px;
+}
+
+/* ===== MAIN ===== */
+main {
+  min-height: calc(100vh - 130px);
+  padding: 40px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== HEADINGS ===== */
+h1 {
+  font-size: 2rem;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+p {
+  color: #555;
+  margin-bottom: 16px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: #1a1a2e;
+  color: #a0aff8;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE — TABLET (768px) ===== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  main {
+    padding: 24px 16px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ===== RESPONSIVE — MOBILE (360px) ===== */
+@media (max-width: 360px) {
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  main {
+    padding: 16px 12px;
+  }
+}
