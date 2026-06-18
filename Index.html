@@ -29,11 +29,57 @@
 
     <section id="dashboard" class="section">
       <h1>Dashboard</h1>
-      <p>Your stats will show here.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span id="stat-total">0</span>
+          <p>Total Tasks</p>
+        </div>
+        <div class="stat-card">
+          <span id="stat-duration">0 min</span>
+          <p>Total Duration</p>
+        </div>
+        <div class="stat-card">
+          <span id="stat-top-tag">—</span>
+          <p>Top Tag</p>
+        </div>
+        <div class="stat-card">
+          <span id="stat-week">0</span>
+          <p>Tasks This Week</p>
+        </div>
+      </div>
+
     </section>
 
      <section id="tasks" class="section">
       <h1>My Tasks</h1>
+
+      <div class="toolbar">
+        <div>
+          <label for="search-input">Search</label>
+          <input type="text" id="search-input" placeholder="e.g. Lab or Academic" />
+        </div>
+
+        <div>
+          <label for="case-toggle">
+            <input type="checkbox" id="case-toggle" />
+            Case sensitive
+          </label>
+        </div>
+
+        <div>
+          <label for="sort-select">Sort by</label>
+          <select id="sort-select">
+            <option value="dueDate-asc">Due Date (earliest)</option>
+            <option value="dueDate-desc">Due Date (latest)</option>
+            <option value="title-asc">Title (A → Z)</option>
+            <option value="title-desc">Title (Z → A)</option>
+            <option value="duration-asc">Duration (shortest)</option>
+            <option value="duration-desc">Duration (longest)</option>
+          </select>
+        </div>
+      </div>
+
       <div id="tasks-container"></div>
     </section>
 

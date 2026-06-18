@@ -17,6 +17,9 @@
 
     const activeLink = document.querySelector('[data-section="' + sectionId + '"]');
     if (activeLink) activeLink.classList.add('active');
+
+    if (sectionId === 'dashboard') renderDashboard();
+    
   }
 
   navLinks.forEach(function(link) {
@@ -209,23 +212,74 @@
     showError('tag-error', validateTag(this.value));
   });
 
-// ============ RENDER TASKS ============
-  function renderTasks() {
-    const container = document.getElementById('tasks-container');
+// ============ SEARCH & SORT ============
+  function getFilteredTasks() {
+    const query = document.getElementById('search-input').value;
+    const caseSensitive = document.getElementById('case-toggle').checked;
+    const sortVal = document.getElementById('sort-select').value;
 
-    if (tasks.length === 0) {
-      container.innerHTML = '<p>No tasks yet. Click Add Task to get started.</p>';
+    let filtered = tasks.slice();
+
+    if (query) {
+      try {
+        const flags = caseSensitive ? '' : 'i';
+        const regex = new RegExp(query, flags);
+        filtered = filtered.filter(function(task) {
+          return regex.test(task.title) || regex.test(task.tag);
+        });
+      } catch (e) {
+        filtered = tasks.slice();
+      }
+    }
+
+    filtered.sort(function(a, b) {
+      if (sortVal === 'dueDate-asc') return a.dueDate.localeCompare(b.dueDate);
+      if (sortVal === 'dueDate-desc') return b.dueDate.localeCompare(a.dueDate);
+      if (sortVal === 'title-asc') return a.title.localeCompare(b.title);
+      if (sortVal === 'title-desc') return b.title.localeCompare(a.title);
+      if (sortVal === 'duration-asc') return a.duration - b.duration;
+      if (sortVal === 'duration-desc') return b.duration - a.duration;
+      return 0;
+    });
+
+    return filtered;
+  }
+
+  function highlight(text, query, caseSensitive) {
+    if (!query) return text;
+    try {
+      const flags = caseSensitive ? 'g' : 'gi';
+      const regex = new RegExp(query, flags);
+      return text.replace(regex, function(m) {
+        return '<mark>' + m + '</mark>';
+      });
+    } catch (e) {
+      return text;
+    }
+  }
+
+// ============ RENDER TASKS ============
+ function renderTasks() {
+    const container = document.getElementById('tasks-container');
+    const query = document.getElementById('search-input').value;
+    const caseSensitive = document.getElementById('case-toggle').checked;
+    const filtered = getFilteredTasks();
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<p>No tasks found.</p>';
       return;
     }
 
     let html = '<table><thead><tr><th>Title</th><th>Due Date</th><th>Duration</th><th>Tag</th><th>Actions</th></tr></thead><tbody>';
 
-    tasks.forEach(function(task) {
+    filtered.forEach(function(task) {
+      const title = highlight(task.title, query, caseSensitive);
+      const tag = highlight(task.tag, query, caseSensitive);
       html += '<tr>';
-      html += '<td>' + task.title + '</td>';
+      html += '<td>' + title + '</td>';
       html += '<td>' + task.dueDate + '</td>';
       html += '<td>' + task.duration + ' min</td>';
-      html += '<td>' + task.tag + '</td>';
+      html += '<td>' + tag + '</td>';
       html += '<td><button data-id="' + task.id + '" class="btn-edit">Edit</button> <button data-id="' + task.id + '" class="btn-delete">Delete</button></td>';
       html += '</tr>';
     });
@@ -262,5 +316,41 @@
   }
 
   renderTasks();
+
+const searchInput = document.getElementById('search-input');
+  const caseToggle = document.getElementById('case-toggle');
+  const sortSelect = document.getElementById('sort-select');
+
+  if (searchInput) searchInput.addEventListener('input', renderTasks);
+  if (caseToggle) caseToggle.addEventListener('change', renderTasks);
+  if (sortSelect) sortSelect.addEventListener('change', renderTasks);
+
+  // ============ DASHBOARD ============
+  function renderDashboard() {
+    const total = tasks.length;
+    const totalDuration = tasks.reduce(function(sum, t) {
+      return sum + t.duration;
+    }, 0);
+
+    const tagCounts = {};
+    tasks.forEach(function(t) {
+      tagCounts[t.tag] = (tagCounts[t.tag] || 0) + 1;
+    });
+    const topTag = Object.keys(tagCounts).sort(function(a, b) {
+      return tagCounts[b] - tagCounts[a];
+    })[0] || '—';
+
+    const now = new Date();
+    const weekAgo = new Date(now);
+    weekAgo.setDate(now.getDate() - 7);
+    const weekTasks = tasks.filter(function(t) {
+      return new Date(t.dueDate) >= weekAgo;
+    }).length;
+
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-duration').textContent = totalDuration + ' min';
+    document.getElementById('stat-top-tag').textContent = topTag;
+    document.getElementById('stat-week').textContent = weekTasks;
+  }
 
 })();
