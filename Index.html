@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Life Planner</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to main content</a>
@@ -32,14 +32,55 @@
       <p>Your stats will show here.</p>
     </section>
 
-    <section id="tasks" class="section">
+     <section id="tasks" class="section">
       <h1>My Tasks</h1>
-      <p>Your tasks will show here.</p>
+      <div id="tasks-container"></div>
     </section>
 
-    <section id="add-task" class="section">
-      <h1>Add Task</h1>
-      <p>Your form will go here.</p>
+   <section id="add-task" class="section">
+      <h1 id="form-heading">Add Task</h1>
+
+      <div class="form-card">
+
+        <div class="form-group">
+          <label for="task-title">Title</label>
+          <input type="text" id="task-title" placeholder="e.g. Submit Lab Report" />
+          <span id="title-error" class="field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="task-due">Due Date</label>
+          <input type="date" id="task-due" />
+          <span id="due-error" class="field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="task-duration">Duration (minutes)</label>
+          <input type="number" id="task-duration" placeholder="e.g. 90" />
+          <span id="duration-error" class="field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="task-tag">Tag</label>
+          <input type="text" id="task-tag" placeholder="e.g. Academic" list="tag-suggestions" />
+          <datalist id="tag-suggestions">
+            <option value="Academic">
+            <option value="Personal">
+            <option value="Social">
+            <option value="Health">
+            <option value="Work">
+          </datalist>
+          <span id="tag-error" class="field-error"></span>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="save-task-btn">Save Task</button>
+          <button type="button" id="cancel-task-btn">Cancel</button>
+        </div>
+
+        <input type="hidden" id="edit-task-id" value="" />
+
+      </div>
     </section>
 
     <section id="settings" class="section">
@@ -53,7 +94,5 @@
   </footer>
 
   <script src="script.js"></script>
-</body>
-</html>
 </body>
 </html>
