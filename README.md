@@ -4,6 +4,9 @@ A simple web app to help students track their tasks, manage time, and never miss
 
 Built with plain HTML, CSS and JavaScript — no frameworks.
 
+## Demo Video link
+https://youtu.be/XMw7dIUaaP4
+
 ## Live Site
 https://dkamanzi-dot.github.io/Campus-Life-Planner
 
