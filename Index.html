@@ -110,11 +110,43 @@
       </div>
     </section>
 
-    <section id="settings" class="section">
+<section id="settings" class="section">
       <h1>Settings</h1>
-      <p>Settings will go here.</p>
-    </section>
 
+      <div class="form-card">
+        <h2>Duration Units</h2>
+        <div class="form-group">
+          <label for="unit-select">Display duration in</label>
+          <select id="unit-select">
+            <option value="minutes">Minutes</option>
+            <option value="hours">Hours</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h2>Weekly Target</h2>
+        <div class="form-group">
+          <label for="cap-input">Target (minutes per week)</label>
+          <input type="number" id="cap-input" min="1" placeholder="e.g. 600" />
+          <button type="button" id="save-cap-btn">Save Target</button>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h2>Data</h2>
+        <div class="form-actions">
+          <button type="button" id="export-btn">Export JSON</button>
+          <label for="import-file">
+            Import JSON
+            <input type="file" id="import-file" accept=".json" />
+          </label>
+          <button type="button" id="clear-data-btn">Clear All Data</button>
+        </div>
+        <p id="import-status"></p>
+      </div>
+
+    </section>
   </main>
 
   <footer>

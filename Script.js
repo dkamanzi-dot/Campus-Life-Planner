@@ -310,7 +310,7 @@
     showSection('add-task');
   }
 
-  // ============ DASHBOARD ============// ============ DASHBOARD ============
+  // DASHBOARD 
   function renderDashboard() {
     const total = tasks.length;
     const totalDuration = tasks.reduce(function(sum, t) {
@@ -321,7 +321,80 @@
     document.getElementById('stat-duration').textContent = totalDuration + ' min';
   }
 
-  // ============ INIT ============
+  // ============ SETTINGS ============
+  function loadSettings() {
+    const unit = localStorage.getItem('campus_unit') || 'minutes';
+    const cap = localStorage.getItem('campus_cap') || '';
+    const unitSelect = document.getElementById('unit-select');
+    const capInput = document.getElementById('cap-input');
+    if (unitSelect) unitSelect.value = unit;
+    if (capInput) capInput.value = cap;
+  }
+
+  document.getElementById('save-cap-btn').addEventListener('click', function () {
+    const cap = document.getElementById('cap-input').value;
+    if (cap) {
+      localStorage.setItem('campus_cap', cap);
+      document.getElementById('import-status').textContent = 'Target saved!';
+    }
+  });
+
+  document.getElementById('unit-select').addEventListener('change', function () {
+    localStorage.setItem('campus_unit', this.value);
+  });
+
+  document.getElementById('export-btn').addEventListener('click', function () {
+    const data = JSON.stringify(tasks, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'campus-tasks.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('import-file').addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      try {
+        const imported = JSON.parse(e.target.result);
+        if (!Array.isArray(imported)) {
+          document.getElementById('import-status').textContent = 'Invalid file format.';
+          return;
+        }
+        const valid = imported.every(function(t) {
+          return t.id && t.title && t.dueDate && t.duration && t.tag;
+        });
+        if (!valid) {
+          document.getElementById('import-status').textContent = 'Some records are missing fields.';
+          return;
+        }
+        tasks = imported;
+        saveTasks(tasks);
+        renderTasks();
+        document.getElementById('import-status').textContent = 'Imported ' + tasks.length + ' tasks successfully!';
+      } catch (e) {
+        document.getElementById('import-status').textContent = 'Error reading file.';
+      }
+    };
+    reader.readAsText(file);
+  });
+
+  document.getElementById('clear-data-btn').addEventListener('click', function () {
+    if (confirm('Are you sure? This will delete all your tasks.')) {
+      tasks = [];
+      saveTasks(tasks);
+      renderTasks();
+      document.getElementById('import-status').textContent = 'All data cleared.';
+    }
+  });
+
+  loadSettings();
+
+  // INIT 
   renderTasks();
 
   const searchInput = document.getElementById('search-input');
