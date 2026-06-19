@@ -1,0 +1,92 @@
+[
+  {
+    "id": "task_0001",
+    "title": "Submit Lab Report",
+    "dueDate": "2025-10-15",
+    "duration": 90,
+    "tag": "Academic",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "task_0002",
+    "title": "Study for Math Exam",
+    "dueDate": "2025-10-20",
+    "duration": 120,
+    "tag": "Academic",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "task_0003",
+    "title": "Go to Gym",
+    "dueDate": "2025-10-01",
+    "duration": 60,
+    "tag": "Health",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "task_0004",
+    "title": "Team Project Meeting",
+    "dueDate": "2025-10-05",
+    "duration": 45,
+    "tag": "Social",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "task_0005",
+    "title": "Read Chapter 5",
+    "dueDate": "2025-10-08",
+    "duration": 30,
+    "tag": "Academic",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "task_0006",
+    "title": "Doctor Appointment",
+    "dueDate": "2025-10-10",
+    "duration": 40,
+    "tag": "Health",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "task_0007",
+    "title": "Part Time Work Shift",
+    "dueDate": "2025-10-12",
+    "duration": 240,
+    "tag": "Work",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "task_0008",
+    "title": "Birthday Party Planning",
+    "dueDate": "2025-10-18",
+    "duration": 50,
+    "tag": "Social",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "task_0009",
+    "title": "Assignment Submission",
+    "dueDate": "2025-10-22",
+    "duration": 180,
+    "tag": "Academic",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  },
+  {
+    "id": "task_0010",
+    "title": "Grocery Shopping",
+    "dueDate": "2025-10-03",
+    "duration": 35,
+    "tag": "Personal",
+    "createdAt": "2025-09-29T08:00:00Z",
+    "updatedAt": "2025-09-29T08:00:00Z"
+  }
+]

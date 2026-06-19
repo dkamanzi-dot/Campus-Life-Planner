@@ -375,6 +375,7 @@
         tasks = imported;
         saveTasks(tasks);
         renderTasks();
+        showSection('tasks');
         document.getElementById('import-status').textContent = 'Imported ' + tasks.length + ' tasks successfully!';
       } catch (e) {
         document.getElementById('import-status').textContent = 'Error reading file.';
