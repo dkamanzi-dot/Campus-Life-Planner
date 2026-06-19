@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Life Planner</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Life Planner</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
-    <header>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
     <div class="logo">📅 Campus Planner</div>
     <nav aria-label="Main navigation">
       <ul>
@@ -20,6 +22,7 @@
       </ul>
     </nav>
   </header>
+
   <main id="main">
 
     <section id="about" class="section active">
@@ -29,7 +32,6 @@
 
     <section id="dashboard" class="section">
       <h1>Dashboard</h1>
-
       <div class="stats-grid">
         <div class="stat-card">
           <span id="stat-total">0</span>
@@ -39,34 +41,22 @@
           <span id="stat-duration">0 min</span>
           <p>Total Duration</p>
         </div>
-        <div class="stat-card">
-          <span id="stat-top-tag">—</span>
-          <p>Top Tag</p>
-        </div>
-        <div class="stat-card">
-          <span id="stat-week">0</span>
-          <p>Tasks This Week</p>
-        </div>
       </div>
-
     </section>
 
-     <section id="tasks" class="section">
+    <section id="tasks" class="section">
       <h1>My Tasks</h1>
-
       <div class="toolbar">
         <div>
           <label for="search-input">Search</label>
           <input type="text" id="search-input" placeholder="e.g. Lab or Academic" />
         </div>
-
         <div>
           <label for="case-toggle">
             <input type="checkbox" id="case-toggle" />
             Case sensitive
           </label>
         </div>
-
         <div>
           <label for="sort-select">Sort by</label>
           <select id="sort-select">
@@ -79,33 +69,27 @@
           </select>
         </div>
       </div>
-
       <div id="tasks-container"></div>
     </section>
 
-   <section id="add-task" class="section">
+    <section id="add-task" class="section">
       <h1 id="form-heading">Add Task</h1>
-
       <div class="form-card">
-
         <div class="form-group">
           <label for="task-title">Title</label>
           <input type="text" id="task-title" placeholder="e.g. Submit Lab Report" />
           <span id="title-error" class="field-error"></span>
         </div>
-
         <div class="form-group">
           <label for="task-due">Due Date</label>
           <input type="date" id="task-due" />
           <span id="due-error" class="field-error"></span>
         </div>
-
         <div class="form-group">
           <label for="task-duration">Duration (minutes)</label>
           <input type="number" id="task-duration" placeholder="e.g. 90" />
           <span id="duration-error" class="field-error"></span>
         </div>
-
         <div class="form-group">
           <label for="task-tag">Tag</label>
           <input type="text" id="task-tag" placeholder="e.g. Academic" list="tag-suggestions" />
@@ -118,14 +102,11 @@
           </datalist>
           <span id="tag-error" class="field-error"></span>
         </div>
-
         <div class="form-actions">
           <button type="button" id="save-task-btn">Save Task</button>
           <button type="button" id="cancel-task-btn">Cancel</button>
         </div>
-
         <input type="hidden" id="edit-task-id" value="" />
-
       </div>
     </section>
 
@@ -135,6 +116,7 @@
     </section>
 
   </main>
+
   <footer>
     <p>Campus Life Planner &copy; 2025</p>
   </footer>

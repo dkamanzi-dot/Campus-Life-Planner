@@ -8,18 +8,13 @@
     sections.forEach(function(section) {
       section.classList.remove('active');
     });
-
     navLinks.forEach(function(link) {
       link.classList.remove('active');
     });
-
     document.getElementById(sectionId).classList.add('active');
-
     const activeLink = document.querySelector('[data-section="' + sectionId + '"]');
     if (activeLink) activeLink.classList.add('active');
-
     if (sectionId === 'dashboard') renderDashboard();
-    
   }
 
   navLinks.forEach(function(link) {
@@ -30,7 +25,7 @@
     });
   });
 
-// ============ STORAGE ============
+  // ============ STORAGE ============
   const STORAGE_KEY = 'campus_planner_tasks';
 
   function saveTasks(tasks) {
@@ -139,7 +134,7 @@
     showError('tag-error', '');
   }
 
-// ============ FORM ============
+  // ============ FORM ============
   const titleInput = document.getElementById('task-title');
   const dueInput = document.getElementById('task-due');
   const durationInput = document.getElementById('task-duration');
@@ -212,7 +207,7 @@
     showError('tag-error', validateTag(this.value));
   });
 
-// ============ SEARCH & SORT ============
+  // ============ SEARCH & SORT ============
   function getFilteredTasks() {
     const query = document.getElementById('search-input').value;
     const caseSensitive = document.getElementById('case-toggle').checked;
@@ -258,8 +253,8 @@
     }
   }
 
-// ============ RENDER TASKS ============
- function renderTasks() {
+  // ============ RENDER TASKS ============
+  function renderTasks() {
     const container = document.getElementById('tasks-container');
     const query = document.getElementById('search-input').value;
     const caseSensitive = document.getElementById('case-toggle').checked;
@@ -315,42 +310,26 @@
     showSection('add-task');
   }
 
-  renderTasks();
-
-const searchInput = document.getElementById('search-input');
-  const caseToggle = document.getElementById('case-toggle');
-  const sortSelect = document.getElementById('sort-select');
-
-  if (searchInput) searchInput.addEventListener('input', renderTasks);
-  if (caseToggle) caseToggle.addEventListener('change', renderTasks);
-  if (sortSelect) sortSelect.addEventListener('change', renderTasks);
-
-  // ============ DASHBOARD ============
+  // ============ DASHBOARD ============// ============ DASHBOARD ============
   function renderDashboard() {
     const total = tasks.length;
     const totalDuration = tasks.reduce(function(sum, t) {
       return sum + t.duration;
     }, 0);
 
-    const tagCounts = {};
-    tasks.forEach(function(t) {
-      tagCounts[t.tag] = (tagCounts[t.tag] || 0) + 1;
-    });
-    const topTag = Object.keys(tagCounts).sort(function(a, b) {
-      return tagCounts[b] - tagCounts[a];
-    })[0] || '—';
-
-    const now = new Date();
-    const weekAgo = new Date(now);
-    weekAgo.setDate(now.getDate() - 7);
-    const weekTasks = tasks.filter(function(t) {
-      return new Date(t.dueDate) >= weekAgo;
-    }).length;
-
     document.getElementById('stat-total').textContent = total;
     document.getElementById('stat-duration').textContent = totalDuration + ' min';
-    document.getElementById('stat-top-tag').textContent = topTag;
-    document.getElementById('stat-week').textContent = weekTasks;
   }
+
+  // ============ INIT ============
+  renderTasks();
+
+  const searchInput = document.getElementById('search-input');
+  const caseToggle = document.getElementById('case-toggle');
+  const sortSelect = document.getElementById('sort-select');
+
+  if (searchInput) searchInput.addEventListener('input', renderTasks);
+  if (caseToggle) caseToggle.addEventListener('change', renderTasks);
+  if (sortSelect) sortSelect.addEventListener('change', renderTasks);
 
 })();
