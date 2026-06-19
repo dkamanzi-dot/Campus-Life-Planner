@@ -395,7 +395,8 @@ footer {
   }
 }
 
-/* ===== RESPONSIVE MOBILE (360px) ===== */
+// RESPONSIVE MOBILE (360px)
+
 @media (max-width: 360px) {
   nav ul {
     flex-direction: column;
